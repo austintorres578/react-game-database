@@ -9,6 +9,7 @@ export default function HomePage(props){
 
     let newSearch = true;
 
+    const [loading, setLoading] = useState(false)
     
     const [gatheredData,setGatheredData] = useState([
         {
@@ -34,10 +35,13 @@ export default function HomePage(props){
             }
           };
 
+          setLoading(true)
           
           fetch(link, options)
-            .then(response => response.json())
             .then(response => {
+                return response.json()})
+            .then(response => {
+                setLoading(false)
                 console.log(response)
                 if(newSearch===true){
                     setPageNumber(1)
@@ -94,6 +98,7 @@ export default function HomePage(props){
                     data={gatheredData}
                     handleSearch={search}
                     link={fetchLink}
+                    loading={loading}
                     nextPageHandler={nextPage}
                     prevPageHandler={prevPage}
                     
@@ -110,17 +115,20 @@ export default function HomePage(props){
                             <p>Rating</p>
                         </div>
                     </div>
-                    {games}
+                    <div className='games-list'>
+                        
+                        {loading ? <p className='loading-text'>Loading...</p> : games}
+                    </div>
                 </div>
                 <div className='game-page-buttons'>
                     <div>
-                        <button onClick={prevPage}>Prev Page</button>
+                        {loading ? <></> : <button onClick={prevPage}>Prev Page</button>}
                     </div>
                     <div className='page-number'>
                         <p>Page {pageNumber}</p>
                     </div>
                     <div>
-                        <button onClick={nextPage}>Next Page</button>
+                        {loading ? <></> : <button onClick={nextPage}>Next Page</button>}
                     </div>
                 </div>
             </div>

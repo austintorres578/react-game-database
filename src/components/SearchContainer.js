@@ -4,32 +4,33 @@ import Select from 'react-select';
 export default function SearchContainer(props){
 
     const consoles = [
-        { value: "49", label: 'NES' },
-        { value: "79", label: 'SNES' },
-        { value: "83", label: 'N64' },
-        { value: "105", label: 'GameCube' },
-        { value: "11", label: 'Wii' },
-        { value: "7", label: 'Switch' },
-        { value: "26", label: 'Gameboy' },
-        { value: "43", label: 'Gameboy Color' },
-        { value: "24", label: 'Gameboy Advance' },
-        { value: "9", label: 'DS' },
-        { value: "8", label: '3DS' },
-        { value: "74", label: 'Sega MS' },
-        { value: "167", label: 'Genesis' },
-        { value: "107", label: 'Saturn' },
-        { value: "106", label: 'Dreamcast' },
-        { value: "27", label: 'PS1' },
-        { value: "15", label: 'PS2' },
-        { value: "16", label: 'PS3' },
-        { value: "18", label: 'PS4' },
-        { value: "187", label: 'PS5' },
-        { value: "17", label: 'PSP' },
-        { value: "19", label: 'PS Vita' },
-        { value: "80", label: 'Xbox' },
-        { value: "14", label: 'Xbox 360' },
-        { value: "1", label: 'Xbox One' },
-        { value: "186", label: 'Xbox X/S' }
+        { value: "", label: 'All Consoles'},
+        { value: "&platforms=49", label: 'NES' },
+        { value: "&platforms=79", label: 'SNES' },
+        { value: "&platforms=83", label: 'N64' },
+        { value: "&platforms=105", label: 'GameCube' },
+        { value: "&platforms=11", label: 'Wii' },
+        { value: "&platforms=7", label: 'Switch' },
+        { value: "&platforms=26", label: 'Gameboy' },
+        { value: "&platforms=43", label: 'Gameboy Color' },
+        { value: "&platforms=24", label: 'Gameboy Advance' },
+        { value: "&platforms=9", label: 'DS' },
+        { value: "&platforms=8", label: '3DS' },
+        { value: "&platforms=74", label: 'Sega MS' },
+        { value: "&platforms=167", label: 'Genesis' },
+        { value: "&platforms=107", label: 'Saturn' },
+        { value: "&platforms=106", label: 'Dreamcast' },
+        { value: "&platforms=27", label: 'PS1' },
+        { value: "&platforms=15", label: 'PS2' },
+        { value: "&platforms=16", label: 'PS3' },
+        { value: "&platforms=18", label: 'PS4' },
+        { value: "&platforms=187", label: 'PS5' },
+        { value: "&platforms=17", label: 'PSP' },
+        { value: "&platforms=19", label: 'PS Vita' },
+        { value: "&platforms=80", label: 'Xbox' },
+        { value: "&platforms=14", label: 'Xbox 360' },
+        { value: "&platforms=1", label: 'Xbox One' },
+        { value: "&platforms=186", label: 'Xbox X/S' }
         
     ]
 
@@ -60,6 +61,8 @@ export default function SearchContainer(props){
 
     let search = props.handleSearch
 
+    let loadChecker = props.loading
+
     let genreArray = []
 
     let consoleLink = ""
@@ -87,7 +90,7 @@ export default function SearchContainer(props){
                 genreLink=""
             }
         if(selectedConsole!=null){
-            consoleLink='&platforms='+selectedConsole.value
+            consoleLink=selectedConsole.value
         }else{
             consoleLink=""
         }
@@ -116,8 +119,8 @@ export default function SearchContainer(props){
                 <div className='search-parameters'>
                     <div className='console-input'>
                         <Select
-                            defaultValue={selectedConsole}
                             onChange={setSelectedConsole}
+                            defaultValue={consoles[0]}
                             placeholder={"Console"}
                             options={consoles}
                             link={consoleLink}
@@ -135,7 +138,7 @@ export default function SearchContainer(props){
                     </div>
                 </div>
                 <div className='search-button-container'>
-                    <button onClick={getLinks}>Search</button>
+                    {loadChecker ? <></> : <button onClick={getLinks}>Search</button>}
                 </div>
             </div>
         </div>
