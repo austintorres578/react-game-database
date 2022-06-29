@@ -52,6 +52,7 @@ body{
 }
 .search-button-container button{
     background-color: rgb(74, 74, 223);
+    border-radius: 3px;
     color: white;
     border: none;
     font-size: 20px;
@@ -69,15 +70,21 @@ body{
     top: 0;
     bottom: 0;
     margin: auto;
-    height: 80%;
-    width: 95%;
+    height: 90%;
+    width: 90%;
 }
 .game-catagories{
     display: grid;
     grid-template-columns: 33% 33% 33%;
     padding-left: 15px;
     padding-right: 10px;
-    border-bottom: 1px solid black;
+    color: white;
+    background-color: gray;
+}
+.game-catagories div p{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    font-weight: bold;
 }
 .game-catagories-description{
     display: flex;
@@ -101,8 +108,32 @@ body{
     margin-right: 10px;
 }
 .game-rating{
+    font-weight: bold;
+    font-size: 20px;
     text-align: center;
+}
+.game-rating p{
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+.game-page-buttons{
+    display: flex;
+    justify-content: space-between;
+    background-color: #d3d3d3;
+}
+.game-page-buttons button{
+    background-color: orange;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border: none
 }
 .catagories-rating{
     text-align: center;
+}
+
+.page-number p{
+    background-color: #d3d3d3;
+    margin: 0px;
+    font-size: 20px;
 }

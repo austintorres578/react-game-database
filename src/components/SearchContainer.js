@@ -53,12 +53,12 @@ export default function SearchContainer(props){
         { value: "10", label: 'Strategy' }
     ];
 
-    const [selectedGenre, setSelectedGenre] = useState(null);
+    const [selectedGenre, setSelectedGenre] = useState([]);
 
     const [selectedConsole, setSelectedConsole] = useState(null);
 
-    let search = props.handleSearch
 
+    let search = props.handleSearch
 
     let genreArray = []
 
@@ -66,36 +66,59 @@ export default function SearchContainer(props){
 
     let genreLink = ""
 
-    let fetchLink = "https://rawg-video-games-database.p.rapidapi.com/games?key=99cd09f6c33b42b5a24a9b447ee04a81&ordering=-metacritic"
+
+    let page = 1
+
+    let pageLink = `&page=${page}`
+
+
+    let fetchLink = props.link
 
 
     
 
     function getLinks(){
-        if(selectedGenre!=null){
+        if(selectedGenre.length>0){
             for (let i = 0; i < selectedGenre.length; i++) {
             genreArray.push(selectedGenre[i].value);   
             }
             genreLink = '&genres='+ genreArray.join()
-
-        }
+            }else{
+                genreLink=""
+            }
         if(selectedConsole!=null){
             consoleLink='&platforms='+selectedConsole.value
+        }else{
+            consoleLink=""
         }
-        search(fetchLink+genreLink+consoleLink)
 
+
+        search(fetchLink+genreLink+consoleLink+pageLink)
+
+        genreArray=[]
+
+        consoleLink=""
+
+        genreLink=""
+
+        
+        
+        
     }
+
 
     // console.log(consoles[0].label)
 
     return(
         <div className="search-container">
+            
             <div className="search-parameters-con">
                 <div className='search-parameters'>
                     <div className='console-input'>
                         <Select
                             defaultValue={selectedConsole}
                             onChange={setSelectedConsole}
+                            placeholder={"Console"}
                             options={consoles}
                             link={consoleLink}
                         />
@@ -104,6 +127,7 @@ export default function SearchContainer(props){
                         <Select
                             isMulti
                             defaultValue={selectedGenre}
+                            placeholder={"Genre"}
                             onChange={setSelectedGenre}
                             options={genres}
                             link={genreLink}
