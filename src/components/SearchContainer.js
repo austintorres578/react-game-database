@@ -30,23 +30,23 @@ export default function SearchContainer(props){
 
     const genres = [
         { value: "", label: "All Genres"},
-        { value: "4", label: 'Action' },
-        { value: "3", label: 'Adventure' },
-        { value: "11", label: 'Arcade' },
-        { value: "17", label: 'Card' },
-        { value: "40", label: 'Casual' },
-        { value: "19", label: 'Family' },
-        { value: "6", label: 'Fighting' },
-        { value: "51", label: 'Indie' },
-        { value: "59", label: 'Multiplayer' },
-        { value: "83", label: 'Platformer' },
-        { value: "7", label: 'Puzzle' },
-        { value: "1", label: 'Racing' },
-        { value: "5", label: 'RPG' },
-        { value: "2", label: 'Shooter' },
-        { value: "14", label: 'Simulation' },
-        { value: "15", label: 'Sports' },
-        { value: "10", label: 'Strategy' }
+        { value: "genres=4", label: 'Action' },
+        { value: "genres=3", label: 'Adventure' },
+        { value: "genres=11", label: 'Arcade' },
+        { value: "genres=17", label: 'Card' },
+        { value: "genres=40", label: 'Casual' },
+        { value: "genres=19", label: 'Family' },
+        { value: "genres=6", label: 'Fighting' },
+        { value: "genres=51", label: 'Indie' },
+        { value: "genres=59", label: 'Multiplayer' },
+        { value: "genres=83", label: 'Platformer' },
+        { value: "genres=7", label: 'Puzzle' },
+        { value: "genres=1", label: 'Racing' },
+        { value: "genres=5", label: 'RPG' },
+        { value: "genres=2", label: 'Shooter' },
+        { value: "genres=14", label: 'Simulation' },
+        { value: "genres=15", label: 'Sports' },
+        { value: "genres=10", label: 'Strategy' }
     ];
 
     const [selectedGenre, setSelectedGenre] = useState(null);
@@ -78,7 +78,7 @@ export default function SearchContainer(props){
 
     function getLinks(){
         if(selectedGenre!=null){
-            genreLink="&genres="+selectedGenre.value
+            genreLink=selectedGenre.value
             }else{
                 genreLink=""
             }
