@@ -57,6 +57,7 @@ export default function SearchContainer(props){
     const [selectedGenre, setSelectedGenre] = useState([]);
 
     const [selectedConsole, setSelectedConsole] = useState(null);
+    
 
 
     let search = props.handleSearch
@@ -113,8 +114,7 @@ export default function SearchContainer(props){
     // console.log(consoles[0].label)
 
     return(
-        <div className="search-container">
-            
+        <div className="search-container"> 
             <div className="search-parameters-con">
                 <div className='search-parameters'>
                     <div className='console-input'>
@@ -138,7 +138,19 @@ export default function SearchContainer(props){
                     </div>
                 </div>
                 <div className='search-button-container'>
+                    {props.strandedCheck}
                     {loadChecker ? <></> : <button onClick={getLinks}>Search</button>}
+                </div>
+            </div>
+            <div className='game-catagories'>
+                <div>
+                    <p>ID</p>
+                </div>
+                <div>
+                    <p>Name</p>
+                </div>
+                <div className='catagories-rating'>
+                    <p>Rating</p>
                 </div>
             </div>
         </div>

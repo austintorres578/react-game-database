@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import arrow from '../components/images/arrow.png'
 
 import SearchContainer from "./SearchContainer"
 import Games from './Games';
@@ -15,7 +16,8 @@ export default function HomePage(props){
         {
         results:[],
         next:"",
-        previous:""
+        previous:"",
+        loaded:false
         }
     ])
 
@@ -50,7 +52,8 @@ export default function HomePage(props){
                     {
                     results:response.results,
                     next:response.next,
-                    previous:response.previous
+                    previous:response.previous,
+                    loaded:true
                 }]))
 
 
@@ -60,18 +63,26 @@ export default function HomePage(props){
     }
 
     function nextPage(){
+        if(gatheredData[0].loaded===true){
         let length = gatheredData[0].next.length
         setPageNumber(prevState => prevState + 1)
         newSearch=false
         search(origin+gatheredData[0].next.slice(24,length))
+        }else{
+            console.log("Not loaded")
+        }
     }
 
     function prevPage(){
+        if(gatheredData[0].loaded===true){
         let length = gatheredData[0].previous.length
         search(origin+gatheredData[0].previous.slice(24,length))
         newSearch=false
         if(pageNumber>1){
             setPageNumber(prevState => prevState - 1)
+        }
+        }else{
+            console.log("Not loaded")
         }
     }
 
@@ -87,8 +98,6 @@ export default function HomePage(props){
              />
          )
      })
-
-
     
     
     return(
@@ -104,31 +113,19 @@ export default function HomePage(props){
                     
                 />
                 <div className="results-container">
-                    <div className='game-catagories'>
-                        <div>
-                            <p>ID</p>
-                        </div>
-                        <div>
-                            <p>Name</p>
-                        </div>
-                        <div className='catagories-rating'>
-                            <p>Rating</p>
-                        </div>
-                    </div>
                     <div className='games-list'>
-                        
                         {loading ? <p className='loading-text'>Loading...</p> : games}
                     </div>
                 </div>
                 <div className='game-page-buttons'>
                     <div>
-                        {loading ? <></> : <button onClick={prevPage}>Prev Page</button>}
+                        {loading ? <></> : <button onClick={prevPage}><img className="left-arrow" src={arrow}></img></button>}
                     </div>
                     <div className='page-number'>
-                        <p>Page {pageNumber}</p>
+                        <p>{ gatheredData[0].loaded ? "Page " + pageNumber : <></>}</p>
                     </div>
                     <div>
-                        {loading ? <></> : <button onClick={nextPage}>Next Page</button>}
+                        {loading ? <></> : <button onClick={nextPage}><img className="right-arrow" src={arrow}></img></button>}
                     </div>
                 </div>
             </div>
