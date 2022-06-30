@@ -5,20 +5,14 @@ export default function SearchContainer(props){
 
     const consoles = [
         { value: "", label: 'All Consoles'},
-        { value: "&platforms=49", label: 'NES' },
-        { value: "&platforms=79", label: 'SNES' },
         { value: "&platforms=83", label: 'N64' },
         { value: "&platforms=105", label: 'GameCube' },
         { value: "&platforms=11", label: 'Wii' },
+        { value: "&platforms=10", label: "Wii U"},
         { value: "&platforms=7", label: 'Switch' },
-        { value: "&platforms=26", label: 'Gameboy' },
-        { value: "&platforms=43", label: 'Gameboy Color' },
         { value: "&platforms=24", label: 'Gameboy Advance' },
         { value: "&platforms=9", label: 'DS' },
         { value: "&platforms=8", label: '3DS' },
-        { value: "&platforms=74", label: 'Sega MS' },
-        { value: "&platforms=167", label: 'Genesis' },
-        { value: "&platforms=107", label: 'Saturn' },
         { value: "&platforms=106", label: 'Dreamcast' },
         { value: "&platforms=27", label: 'PS1' },
         { value: "&platforms=15", label: 'PS2' },
@@ -35,6 +29,7 @@ export default function SearchContainer(props){
     ]
 
     const genres = [
+        { value: "", label: "All Genres"},
         { value: "4", label: 'Action' },
         { value: "3", label: 'Adventure' },
         { value: "11", label: 'Arcade' },
@@ -54,17 +49,17 @@ export default function SearchContainer(props){
         { value: "10", label: 'Strategy' }
     ];
 
-    const [selectedGenre, setSelectedGenre] = useState([]);
+    const [selectedGenre, setSelectedGenre] = useState(null);
 
     const [selectedConsole, setSelectedConsole] = useState(null);
+
+    console.log(selectedGenre)
     
 
 
     let search = props.handleSearch
 
     let loadChecker = props.loading
-
-    let genreArray = []
 
     let consoleLink = ""
 
@@ -82,11 +77,8 @@ export default function SearchContainer(props){
     
 
     function getLinks(){
-        if(selectedGenre.length>0){
-            for (let i = 0; i < selectedGenre.length; i++) {
-            genreArray.push(selectedGenre[i].value);   
-            }
-            genreLink = '&genres='+ genreArray.join()
+        if(selectedGenre!=null){
+            genreLink="&genres="+selectedGenre.value
             }else{
                 genreLink=""
             }
@@ -97,9 +89,8 @@ export default function SearchContainer(props){
         }
 
 
+        // search(fetchLink+genreLink+consoleLink+pageLink)
         search(fetchLink+genreLink+consoleLink+pageLink)
-
-        genreArray=[]
 
         consoleLink=""
 
@@ -110,8 +101,6 @@ export default function SearchContainer(props){
         
     }
 
-
-    // console.log(consoles[0].label)
 
     return(
         <div className="search-container"> 
@@ -128,9 +117,8 @@ export default function SearchContainer(props){
                     </div>
                     <div className='genre-input'>
                         <Select
-                            isMulti
-                            defaultValue={selectedGenre}
                             placeholder={"Genre"}
+                            defaultValue={genres[0]}
                             onChange={setSelectedGenre}
                             options={genres}
                             link={genreLink}
