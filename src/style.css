@@ -114,7 +114,7 @@ body{
     margin-right: 10px;
 }
 
-.game{
+.game a{
     display: grid;
     grid-template-columns: 33% 33% 33%;
     background-color: rgb(149, 149, 149);
@@ -126,8 +126,9 @@ body{
     color: white;
     margin-bottom: 5px;
     transition: .3s;
+    text-decoration: none;
 }
-.game:hover{
+.game a:hover{
     background-color: rgb(96, 96, 255);
 }
 
@@ -135,12 +136,6 @@ body{
     font-weight: bold;
 }
 
-.game-description{
-    display: flex;
-}
-.game-description div{
-    margin-right: 10px;
-}
 .game-rating{
     font-weight: bold;
     font-size: 20px;
@@ -201,4 +196,122 @@ body{
     height: 100%;
     width: auto;
     transform: scaleX(-1);
+}
+.game-page-section{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background-color: white;
+}
+.game-page{
+    background-color: rgba(116, 116, 116, 0.904);
+    
+    padding: 15px;
+    height: 95%;
+    width: 95%;
+}
+.game-screenshots{
+    position: relative;
+    display: flex;
+    overflow-x: scroll;
+    width: 100%;
+}
+.game-screenshots div{
+    margin-right: 15px;
+}
+.game-screenshots div img{
+    height: auto;
+    width: 300px;
+}
+.screnshot-load{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+.header{
+    text-align: center;
+}
+.game-description{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.game-description div{
+    margin-right: 10px;
+}
+.game-description p{
+    font-size: 18px;
+}
+.game-page-rating h1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 80px;
+}
+.game-release{
+    align-items: center;
+}
+.game-release strong{
+    font-size: 22px;
+}
+.game-page-genres-container{
+    text-align: center;
+}
+.game-page-genres-container h3{
+    font-size: 22px;
+}
+.game-release p{
+    font-size: 18px;
+}
+.genre-labels{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: black;
+}
+.genre-labels div{
+    background-color: darkgray;
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 5px;
+    margin-right: 5px;
+    width: fit-content;
+}
+.genre-labels div p{
+    margin: 0px;
+}
+.platforms-container{
+    text-align: center;
+}
+.platform-labels{
+    color: black;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.platform-labels div{
+    background-color: darkgray;
+    border-radius: 3px;
+    font-weight: bold;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    width: fit-content;
+}
+.platform-labels div p{
+    margin: 0px;
+}
+.game-page-loading{
+    background-color: rgba(116, 116, 116, 0.904);
+    padding: 15px;
+    height: 100vh;
+    width: 95%;
+}
+
+.dev-pub-container{
+    text-align: center;
 }

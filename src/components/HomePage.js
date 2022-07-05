@@ -86,11 +86,12 @@ export default function HomePage(props){
         }
     }
 
+    
 
 
      const games = gatheredData[0].results.map(game => {
          return (
-             <Games 
+             <Games
                  key={game.id}
                  id={game.id}
                  name={game.name}
