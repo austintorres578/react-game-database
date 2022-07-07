@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 
 export default function SearchContainer(props){
@@ -52,8 +52,6 @@ export default function SearchContainer(props){
     const [selectedGenre, setSelectedGenre] = useState(null);
 
     const [selectedConsole, setSelectedConsole] = useState(null);
-
-    console.log(selectedGenre)
     
 
 
@@ -78,18 +76,19 @@ export default function SearchContainer(props){
 
     function getLinks(){
         if(selectedGenre!=null){
+            localStorage.setItem("selectedGenre",JSON.stringify(selectedGenre))
             genreLink=selectedGenre.value
             }else{
                 genreLink=""
             }
         if(selectedConsole!=null){
+            localStorage.setItem("selectedConsole",JSON.stringify(selectedConsole))
             consoleLink=selectedConsole.value
         }else{
             consoleLink=""
         }
 
 
-        // search(fetchLink+genreLink+consoleLink+pageLink)
         search(fetchLink+genreLink+consoleLink+pageLink)
 
         consoleLink=""
@@ -101,6 +100,19 @@ export default function SearchContainer(props){
         
     }
 
+    function onLoad(){
+        if(localStorage.getItem("currentLink")!==null){
+            setSelectedConsole(JSON.parse(localStorage.getItem("selectedConsole")));
+            setSelectedGenre(JSON.parse(localStorage.getItem("selectedGenre")));
+            console.log(selectedConsole);
+            console.log(selectedGenre)
+        }
+    }
+
+    useEffect(() => {
+        console.log("executed only once!");
+        onLoad();
+    }, [""]);
 
     return(
         <div className="search-container"> 
@@ -109,16 +121,14 @@ export default function SearchContainer(props){
                     <div className='console-input'>
                         <Select
                             onChange={setSelectedConsole}
-                            defaultValue={consoles[0]}
-                            placeholder={"Console"}
+                            placeholder={"All Consoles"}
                             options={consoles}
                             link={consoleLink}
                         />
                     </div>
                     <div className='genre-input'>
                         <Select
-                            placeholder={"Genre"}
-                            defaultValue={genres[0]}
+                            placeholder={"All Genres"}
                             onChange={setSelectedGenre}
                             options={genres}
                             link={genreLink}
@@ -126,7 +136,6 @@ export default function SearchContainer(props){
                     </div>
                 </div>
                 <div className='search-button-container'>
-                    {props.strandedCheck}
                     {loadChecker ? <></> : <button onClick={getLinks}>Search</button>}
                 </div>
             </div>

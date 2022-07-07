@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import arrow from '../components/images/arrow.png'
 
 import SearchContainer from "./SearchContainer"
@@ -8,7 +8,7 @@ export default function HomePage(props){
 
     let origin = "https://rawg-video-games-database.p.rapidapi.com/"
 
-    let newSearch = true;
+    let newSearch = localStorage.getItem("currentLink") ? false : true
 
     const [loading, setLoading] = useState(false)
     
@@ -43,10 +43,12 @@ export default function HomePage(props){
             .then(response => {
                 return response.json()})
             .then(response => {
-                setLoading(false)
                 console.log(response)
+                setLoading(false)
+                localStorage.setItem("currentLink",JSON.stringify(link))
                 if(newSearch===true){
                     setPageNumber(1)
+                    localStorage.setItem("currentPage",JSON.stringify(pageNumber))
                 }
                 return(setGatheredData([
                     {
@@ -62,11 +64,18 @@ export default function HomePage(props){
 
     }
 
+    function freshSearch(link){
+        newSearch=true
+        search(link)
+    }
+
     function nextPage(){
         if(gatheredData[0].loaded===true){
         let length = gatheredData[0].next.length
         setPageNumber(prevState => prevState + 1)
+        localStorage.setItem("currentPage",JSON.stringify(pageNumber+1))
         newSearch=false
+        localStorage.setItem("currentLink",JSON.stringify(origin+gatheredData[0].next.slice(24,length)))
         search(origin+gatheredData[0].next.slice(24,length))
         }else{
             console.log("Not loaded")
@@ -76,18 +85,34 @@ export default function HomePage(props){
     function prevPage(){
         if(gatheredData[0].loaded===true){
         let length = gatheredData[0].previous.length
+        localStorage.setItem("currentLink",JSON.stringify("currentLink"))
         search(origin+gatheredData[0].previous.slice(24,length))
         newSearch=false
         if(pageNumber>1){
             setPageNumber(prevState => prevState - 1)
+            localStorage.setItem("currentPage",JSON.stringify(pageNumber-1))
         }
         }else{
             console.log("Not loaded")
         }
     }
 
-    
+    function test(){
+        if(localStorage.getItem("currentLink")!==null){
+            console.log(JSON.parse(localStorage.getItem("currentLink")).length)
+            console.log(JSON.parse(localStorage.getItem("currentLink")))
+            setPageNumber(JSON.parse(localStorage.getItem("currentPage")))
+            search(JSON.parse(localStorage.getItem("currentLink")))
+        }
+        else{
+            console.log("link is empty")
+        }
+    }
 
+
+    useEffect(() => {
+        test();
+    }, [""]);
 
      const games = gatheredData[0].results.map(game => {
          return (
@@ -106,7 +131,7 @@ export default function HomePage(props){
             <div className='app-container'>
                 <SearchContainer 
                     data={gatheredData}
-                    handleSearch={search}
+                    handleSearch={freshSearch}
                     link={fetchLink}
                     loading={loading}
                     nextPageHandler={nextPage}

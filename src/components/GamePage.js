@@ -466,7 +466,9 @@ function searchForImages(link){
                         <h2>Description</h2>
                     </div>
                     <div className="game-description">
-                    {htmlParser(description)}
+                        <div>
+                            {htmlParser(description)}
+                        </div>
                     </div>
                 </div>
                 <div className="game-screenshots-container">
