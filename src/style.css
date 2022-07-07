@@ -313,3 +313,7 @@ body{
 .dev-pub-container{
     text-align: center;
 }
+.no-images{
+    text-align: center;
+    color: red;
+}

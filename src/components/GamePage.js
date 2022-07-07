@@ -415,14 +415,20 @@ function searchForImages(link){
         "display": "flex",
         "justifyContent": "center",
         "padding": "15px",
-        "backgroundImage": `url(${gameData.background_image})`,
+        "backgroundImage": `url(${gameData.background_image ? gameData.background_image : defaultBackground})`,
         "backgroundPosition": "center center",
         "backgroundRepeat":"no-repeat",
         "backgroundSize":"cover",
         "color":"white"
         
     }
-    
+
+    const screenShotChecker=( )=>{
+        if(gameScreenshots.length===0){
+            return <div className="no-images"><h3>No Images</h3></div>
+            
+        }
+    } 
 
     return(
         <div style={gamePageSectionStyle}>
@@ -444,7 +450,7 @@ function searchForImages(link){
                                 <p>{platformArray.platform.name}</p>
                             </div>)}
                     </div>
-                </div>,
+                </div>
                 <div className="game-page-genres-container">
                     <h3>Genres</h3>
                     <div className="genre-labels">   
@@ -457,8 +463,8 @@ function searchForImages(link){
                 <div className="dev-pub-container">
                     <h3>Developers/Publishers</h3>
                     <div>
-                        <p>Developer: {gameData.developers[0].name}</p>
-                        <p>Publisher: {gameData.publishers[0].name}</p>
+                        <p>Developer: {gameData.developers[0] ? gameData.developers[0].name : "Unlisted"}</p>
+                        <p>Publisher: {gameData.publishers[0] ? gameData.publishers[0].name : "Unlisted"}</p>
                     </div>
                 </div>
                 <div className="game-description-container">
@@ -475,6 +481,7 @@ function searchForImages(link){
                     <div className="header">
                         <h2>Screenshots</h2>
                     </div>
+                    {screenShotChecker()}
                     <div className="game-screenshots">
                     {
                     loading ? 
