@@ -3,6 +3,10 @@ import Select from 'react-select';
 
 export default function SearchContainer(props){
 
+    //consoles and genre list for the selectable options. value is whats added to fetch link, label 
+    //is the name of console displayed, placement is used to help in displayin the prevously used
+    //console or genre when home page is reloaded or refreshed
+
     const consoles = [
         { value: "&platforms=83,105,11,10,7,24,9,8,106,27,15,16,18,187,17,19,80,14,1,186", label: 'All Consoles', placement:"0"},
         { value: "&platforms=83", label: 'N64', placement:"1" },
@@ -49,27 +53,43 @@ export default function SearchContainer(props){
         { value: "genres=10", label: 'Strategy', placement:"17" }
     ];
 
+    //state used to store the current genre and console object
+
     const [selectedGenre, setSelectedGenre] = useState(null);
 
     const [selectedConsole, setSelectedConsole] = useState(null);
     
+    //connected to freshSearch()
 
+    let freshSearch = props.handleSearch
 
-    let search = props.handleSearch
+    //connected to loading state
 
     let loadChecker = props.loading
 
+    //varible used to store the selected console value link
+
     let consoleLink = ""
+
+    //variable used to store the selected genre value link
 
     let genreLink = ""
 
+    //variable assigned number that will be inside page link
 
     let page = 1
 
+    //variable used to store the current page link
+
     let pageLink = `&page=${page}`
 
+    // connected to fetchLink in home page which is the default fetch api link
 
     let fetchLink = props.link
+
+    //sets the default console on the console select depending on what console is saved on localStorage
+    // this insures that when homepage is reloaded the console select will display the last searched 
+    //console. if no localstorage console is present then the default will be all consoles
 
     let consoleDefault = () =>{
         if(JSON.parse(localStorage.getItem("selectedConsole"))!=null){
@@ -79,6 +99,8 @@ export default function SearchContainer(props){
         }
     }
 
+    //does the same as consoleDefault but for genres
+
     let genresDefault = () =>{
         if(JSON.parse(localStorage.getItem("selectedGenre"))!=null){
             return genres[JSON.parse(localStorage.getItem("selectedGenre")).placement]
@@ -87,7 +109,9 @@ export default function SearchContainer(props){
         }
     }
 
-    
+    //function that assigns the selected console/genre to local storage, then assigns the value to link
+    //variable. then it combines the default link with console and genre link to freshsearch, them empties
+    //link variables
 
     function getLinks(){
         if(selectedGenre!=null){
@@ -104,7 +128,7 @@ export default function SearchContainer(props){
         }
 
 
-        search(fetchLink+genreLink+consoleLink+pageLink)
+        freshSearch(fetchLink+genreLink+consoleLink+pageLink)
 
         consoleLink=""
 
@@ -112,17 +136,19 @@ export default function SearchContainer(props){
         
     }
 
+    //checks if localStorage link is present and if it is it will set console and genre state as local
+    //console and genre
+
     function onLoad(){
         if(localStorage.getItem("currentLink")!==null){
             setSelectedConsole(JSON.parse(localStorage.getItem("selectedConsole")))
             setSelectedGenre(JSON.parse(localStorage.getItem("selectedGenre")))
-            console.log(selectedConsole)
-            console.log(selectedGenre)
         }
     }
 
+    //calls onLoad() once when homepage is loaded
+
     useEffect(() => {
-        console.log("executed only once!");
         onLoad();
     }, [""]);
 
@@ -150,6 +176,10 @@ export default function SearchContainer(props){
                     </div>
                 </div>
                 <div className='search-button-container'>
+
+                    {/* if fetching loading then search button wont be displayed, this is to prevent searches
+                    when fetch is already searching */}
+
                     {loadChecker ? <></> : <button onClick={getLinks}>Search</button>}
                 </div>
             </div>

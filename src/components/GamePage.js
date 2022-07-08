@@ -7,7 +7,11 @@ import defaultBackground from "./images/background.png"
 
 export default function GamePage(){
 
+    //state used to determine if gamePage fetch is loading
+
     const [loading, setLoading] = useState(false)
+
+    //gamePage data is stored here with preset data before fetch to prevent errors
 
     const [gameData,setGameData] = useState({
         "id": 0,
@@ -256,6 +260,9 @@ export default function GamePage(){
         "description_raw": "Super Mario Odyssey is a 3D platform game, a part of Nintendo’s Super Mario series. \n\n###Story \nThe game follows Mario on his quest to save Princess Peach from her forced marriage with Bowser. The game starts with Mario fighting Bowser on its aircraft. Bowers knock Mario off the ship and shreds his cap into pieces. Mario awakens in the Cap Kingdom inhabited with hat-like spirits and befriends one of them named Cappy. It turns out, Bowser also kidnapped Cappy’s sister Tiara, and now the heroes must chase Bowser through several kingdoms to save Peach and Tiara. \n\n###Gameplay \nThe gameplay of Super Mario Odyssey draws inspiration from Super Mario 64 and Super Mario Sunshine. The game consists 17 levels (named as “kingdoms”). In most of them, your goal is to collect a certain amount of Power Moons. Collecting enough of them allows the player to progress to the next kingdom. Some moons can be found in different parts of the level or acquired as a reward for completing certain tasks or challenges. The Mario’s moveset mostly resembles that of Super Mario 64 and includes wall jumps, triple jumps, somersaults, long jumps, rolling on the ground. The main new gameplay feature is that Mario can throw his hat to create temporary platforms, grab objects, attack enemies, or possess them. Possessing enemies gives you new moves and sometimes is necessary to reach certain parts of the level."
     })
 
+    //seperate state that stores game screenshots since gameFetch doesnt have screenshots, alse has preset
+    //screenshots to prevent errors
+
     const [gameScreenshots, setGamescreenshots] = useState([
         {
             "id": 752887,
@@ -301,21 +308,32 @@ export default function GamePage(){
         }
     ])
 
+    //variable that has description of game from gamefetch
+
     let description = gameData.description
+
+    //variable that stores link in address bar
 
     let addressBarLink=window.location.href
 
+    //variable used to create the link used on gamefetch to get game information
+
     let fetchLink 
+
+    //api key
 
     let key = "?key=99cd09f6c33b42b5a24a9b447ee04a81"
 
+    //function used to parse game description since it comes as an html string then returns parsed string
 
 function htmlParser(html){
    return parse(html)
 }
 
+//function is used to determine the length of the game id to create the correct game fetch link
 
-function onLoadTest(){
+
+function createGameLink(){
 
     if(addressBarLink.slice(addressBarLink.length-7,addressBarLink.length)[0]==="#"){
         //  console.log("its 6 digits")
@@ -356,6 +374,8 @@ function onLoadTest(){
 
  }
 
+//searches for game information
+
 function searchForData(link){
     const options = {
         method: 'GET',
@@ -377,6 +397,9 @@ function searchForData(link){
         .catch(err => console.error(err));
 
 }
+
+//searches for game screenshots
+
 
 function searchForImages(link){
     const options = {
@@ -401,11 +424,13 @@ function searchForImages(link){
 
 }
     
+//runs once on load
 
     useEffect(() => {
-        console.log("executed only once!");
-        onLoadTest();
+        createGameLink();
     }, [""]);
+
+    //style object used to use the background from data or default to blue one if backgroun isnt present
 
     let gamePageSectionStyle = {
         "position":"relative",
@@ -419,6 +444,8 @@ function searchForImages(link){
         "color":"white"
         
     }
+
+    //checks to see if screenshots are present and if not will display no images h3
 
     const screenShotChecker=()=>{
         if(gameScreenshots.length===0){
@@ -460,6 +487,9 @@ function searchForImages(link){
                 <div className="dev-pub-container">
                     <h3>Developers/Publishers</h3>
                     <div>
+
+                        {/* checks if developers or publisher info is present, if not they will say unlisted */}
+
                         <p>Developer: {gameData.developers[0] ? gameData.developers[0].name : "Unlisted"}</p>
                         <p>Publisher: {gameData.publishers[0] ? gameData.publishers[0].name : "Unlisted"}</p>
                     </div>

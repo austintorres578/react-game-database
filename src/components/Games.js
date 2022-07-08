@@ -5,6 +5,9 @@ export default function Games(props){
     
     return(
         <div className='game'>
+
+            {/* "#" is used to pass game id to gamePage" */}
+
             <Link to={"/game#"+props.id}>
                 <div className='game-id'>
                     <div>
