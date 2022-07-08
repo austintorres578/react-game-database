@@ -372,7 +372,6 @@ function searchForData(link){
             return response.json()})
         .then(response => {
             setLoading(false)
-            console.log(response)
             return(setGameData(response))
         })
         .catch(err => console.error(err));
@@ -430,7 +429,7 @@ function searchForImages(link){
 
     return(
         <div style={gamePageSectionStyle}>
-            {loading ? <div className="game-page-loading"><p>Loading...</p></div> : <div className="game-page">
+            {loading ? <div className="game-page-loading"><h2>Loading...</h2></div> : <div className="game-page">
                 <div className="game-title header">
                     <h1>{gameData.name_original}</h1>
                 </div>

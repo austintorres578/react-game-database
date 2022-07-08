@@ -48,7 +48,7 @@ export default function HomePage(props){
                 localStorage.setItem("currentLink",JSON.stringify(link))
                 if(newSearch===true){
                     setPageNumber(1)
-                    localStorage.setItem("currentPage",JSON.stringify(pageNumber))
+                    localStorage.setItem("currentPage",JSON.stringify(1))
                 }
                 return(setGatheredData([
                     {
@@ -98,7 +98,7 @@ export default function HomePage(props){
     }
 
     function test(){
-        if(localStorage.getItem("currentLink")!==null){
+        if(JSON.parse(localStorage.getItem("currentLink"))!=null){
             console.log(JSON.parse(localStorage.getItem("currentLink")).length)
             console.log(JSON.parse(localStorage.getItem("currentLink")))
             setPageNumber(JSON.parse(localStorage.getItem("currentPage")))

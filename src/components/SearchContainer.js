@@ -4,7 +4,7 @@ import Select from 'react-select';
 export default function SearchContainer(props){
 
     const consoles = [
-        { value: "", label: 'All Consoles', placement:"0"},
+        { value: "&platforms=83,105,11,10,7,24,9,8,106,27,15,16,18,187,17,19,80,14,1,186", label: 'All Consoles', placement:"0"},
         { value: "&platforms=83", label: 'N64', placement:"1" },
         { value: "&platforms=105", label: 'GameCube', placement:"2" },
         { value: "&platforms=11", label: 'Wii', placement:"3" },
