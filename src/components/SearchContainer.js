@@ -4,49 +4,49 @@ import Select from 'react-select';
 export default function SearchContainer(props){
 
     const consoles = [
-        { value: "", label: 'All Consoles'},
-        { value: "&platforms=83", label: 'N64' },
-        { value: "&platforms=105", label: 'GameCube' },
-        { value: "&platforms=11", label: 'Wii' },
-        { value: "&platforms=10", label: "Wii U"},
-        { value: "&platforms=7", label: 'Switch' },
-        { value: "&platforms=24", label: 'Gameboy Advance' },
-        { value: "&platforms=9", label: 'DS' },
-        { value: "&platforms=8", label: '3DS' },
-        { value: "&platforms=106", label: 'Dreamcast' },
-        { value: "&platforms=27", label: 'PS1' },
-        { value: "&platforms=15", label: 'PS2' },
-        { value: "&platforms=16", label: 'PS3' },
-        { value: "&platforms=18", label: 'PS4' },
-        { value: "&platforms=187", label: 'PS5' },
-        { value: "&platforms=17", label: 'PSP' },
-        { value: "&platforms=19", label: 'PS Vita' },
-        { value: "&platforms=80", label: 'Xbox' },
-        { value: "&platforms=14", label: 'Xbox 360' },
-        { value: "&platforms=1", label: 'Xbox One' },
-        { value: "&platforms=186", label: 'Xbox X/S' }
+        { value: "", label: 'All Consoles', placement:"0"},
+        { value: "&platforms=83", label: 'N64', placement:"1" },
+        { value: "&platforms=105", label: 'GameCube', placement:"2" },
+        { value: "&platforms=11", label: 'Wii', placement:"3" },
+        { value: "&platforms=10", label: "Wii U", placement:"4"},
+        { value: "&platforms=7", label: 'Switch', placement:"5" },
+        { value: "&platforms=24", label: 'Gameboy Advance', placement:"6" },
+        { value: "&platforms=9", label: 'DS', placement:"7" },
+        { value: "&platforms=8", label: '3DS', placement:"8" },
+        { value: "&platforms=106", label: 'Dreamcast', placement:"9" },
+        { value: "&platforms=27", label: 'PS1', placement:"10" },
+        { value: "&platforms=15", label: 'PS2', placement:"11" },
+        { value: "&platforms=16", label: 'PS3', placement:"12" },
+        { value: "&platforms=18", label: 'PS4', placement:"13" },
+        { value: "&platforms=187", label: 'PS5', placement:"14" },
+        { value: "&platforms=17", label: 'PSP', placement:"15" },
+        { value: "&platforms=19", label: 'PS Vita', placement:"16" },
+        { value: "&platforms=80", label: 'Xbox', placement:"17" },
+        { value: "&platforms=14", label: 'Xbox 360', placement:"18" },
+        { value: "&platforms=1", label: 'Xbox One', placement:"19" },
+        { value: "&platforms=186", label: 'Xbox X/S',placement:"20" }
         
     ]
 
     const genres = [
-        { value: "", label: "All Genres"},
-        { value: "genres=4", label: 'Action' },
-        { value: "genres=3", label: 'Adventure' },
-        { value: "genres=11", label: 'Arcade' },
-        { value: "genres=17", label: 'Card' },
-        { value: "genres=40", label: 'Casual' },
-        { value: "genres=19", label: 'Family' },
-        { value: "genres=6", label: 'Fighting' },
-        { value: "genres=51", label: 'Indie' },
-        { value: "genres=59", label: 'Multiplayer' },
-        { value: "genres=83", label: 'Platformer' },
-        { value: "genres=7", label: 'Puzzle' },
-        { value: "genres=1", label: 'Racing' },
-        { value: "genres=5", label: 'RPG' },
-        { value: "genres=2", label: 'Shooter' },
-        { value: "genres=14", label: 'Simulation' },
-        { value: "genres=15", label: 'Sports' },
-        { value: "genres=10", label: 'Strategy' }
+        { value: "", label: "All Genres", placement:"0"},
+        { value: "genres=4", label: 'Action', placement:"1" },
+        { value: "genres=3", label: 'Adventure', placement:"2" },
+        { value: "genres=11", label: 'Arcade', placement:"3" },
+        { value: "genres=17", label: 'Card', placement:"4" },
+        { value: "genres=40", label: 'Casual', placement:"5" },
+        { value: "genres=19", label: 'Family', placement:"6" },
+        { value: "genres=6", label: 'Fighting', placement:"7" },
+        { value: "genres=51", label: 'Indie', placement:"8" },
+        { value: "genres=59", label: 'Multiplayer', placement:"9" },
+        { value: "genres=83", label: 'Platformer', placement:"10" },
+        { value: "genres=7", label: 'Puzzle', placement:"11" },
+        { value: "genres=1", label: 'Racing', placement:"12" },
+        { value: "genres=5", label: 'RPG', placement:"13" },
+        { value: "genres=2", label: 'Shooter', placement:"14" },
+        { value: "genres=14", label: 'Simulation', placement:"15" },
+        { value: "genres=15", label: 'Sports', placement:"16" },
+        { value: "genres=10", label: 'Strategy', placement:"17" }
     ];
 
     const [selectedGenre, setSelectedGenre] = useState(null);
@@ -71,6 +71,21 @@ export default function SearchContainer(props){
 
     let fetchLink = props.link
 
+    let consoleDefault = () =>{
+        if(JSON.parse(localStorage.getItem("selectedConsole"))!=null){
+            return consoles[JSON.parse(localStorage.getItem("selectedConsole")).placement]
+        }else{
+            return consoles[0]
+        }
+    }
+
+    let genresDefault = () =>{
+        if(JSON.parse(localStorage.getItem("selectedGenre"))!=null){
+            return genres[JSON.parse(localStorage.getItem("selectedGenre")).placement]
+        }else{
+            return genres[0]
+        }
+    }
 
     
 
@@ -93,18 +108,15 @@ export default function SearchContainer(props){
 
         consoleLink=""
 
-        genreLink=""
-
-        
-        
+        genreLink=""    
         
     }
 
     function onLoad(){
         if(localStorage.getItem("currentLink")!==null){
-            setSelectedConsole(JSON.parse(localStorage.getItem("selectedConsole")));
-            setSelectedGenre(JSON.parse(localStorage.getItem("selectedGenre")));
-            console.log(selectedConsole);
+            setSelectedConsole(JSON.parse(localStorage.getItem("selectedConsole")))
+            setSelectedGenre(JSON.parse(localStorage.getItem("selectedGenre")))
+            console.log(selectedConsole)
             console.log(selectedGenre)
         }
     }
@@ -121,6 +133,7 @@ export default function SearchContainer(props){
                     <div className='console-input'>
                         <Select
                             onChange={setSelectedConsole}
+                            defaultValue={consoleDefault}
                             placeholder={"All Consoles"}
                             options={consoles}
                             link={consoleLink}
@@ -129,6 +142,7 @@ export default function SearchContainer(props){
                     <div className='genre-input'>
                         <Select
                             placeholder={"All Genres"}
+                            defaultValue={genresDefault}
                             onChange={setSelectedGenre}
                             options={genres}
                             link={genreLink}

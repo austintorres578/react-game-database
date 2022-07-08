@@ -10,12 +10,12 @@ export default function GamePage(){
     const [loading, setLoading] = useState(false)
 
     const [gameData,setGameData] = useState({
-        "id": 28026,
+        "id": 0,
         "slug": "",
         "name": "",
         "name_original": "",
         "description": "",
-        "metacritic": 97,
+        "metacritic": 0,
         "metacritic_platforms": [],
         "released": "",
         "tba": false,
@@ -309,8 +309,6 @@ export default function GamePage(){
 
     let key = "?key=99cd09f6c33b42b5a24a9b447ee04a81"
 
-    // console.log(addressBarLink.slice(addressBarLink.length-6,addressBarLink.length)[0])
-
 
 function htmlParser(html){
    return parse(html)
@@ -423,7 +421,7 @@ function searchForImages(link){
         
     }
 
-    const screenShotChecker=( )=>{
+    const screenShotChecker=()=>{
         if(gameScreenshots.length===0){
             return <div className="no-images"><h3>No Images</h3></div>
             
