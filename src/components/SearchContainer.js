@@ -53,11 +53,15 @@ export default function SearchContainer(props){
         { value: "genres=10", label: 'Strategy', placement:"17" }
     ];
 
+
+
     //state used to store the current genre and console object
 
     const [selectedGenre, setSelectedGenre] = useState(null);
 
     const [selectedConsole, setSelectedConsole] = useState(null);
+    
+    const [search,setSearch] = useState("");
     
     //connected to freshSearch()
 
@@ -76,6 +80,10 @@ export default function SearchContainer(props){
     let genreLink = ""
 
     //variable assigned number that will be inside page link
+
+    let searchInput = document.querySelector(".game-search-input")
+
+    let searchLink
 
     let page = 1
 
@@ -126,25 +134,41 @@ export default function SearchContainer(props){
         }else{
             consoleLink=""
         }
+        if(search.length!=0){
+            searchLink="&search="+search
+            localStorage.setItem("searchedValue",JSON.stringify(search))
+        }
+        else{
+            searchLink=""
+        }
 
+        
+        freshSearch(fetchLink+genreLink+consoleLink+pageLink+searchLink)
 
-        freshSearch(fetchLink+genreLink+consoleLink+pageLink)
+        console.log(fetchLink+genreLink+consoleLink+pageLink+searchLink)
+
 
         consoleLink=""
 
-        genreLink=""    
+        genreLink="" 
+        
+        searchLink=""
         
     }
 
-    //checks if localStorage link is present and if it is it will set console and genre state as local
-    //console and genre
+    //checks if localStorage link is present and if it is it will set console,genre and search state as local
+    //console,genre,search
 
     function onLoad(){
         if(localStorage.getItem("currentLink")!==null){
             setSelectedConsole(JSON.parse(localStorage.getItem("selectedConsole")))
             setSelectedGenre(JSON.parse(localStorage.getItem("selectedGenre")))
         }
+        if(localStorage.getItem("searchedValue")!=null){
+            setSearch(JSON.parse(localStorage.getItem("searchedValue")))
+        }
     }
+    
 
     //calls onLoad() once when homepage is loaded
 
@@ -174,6 +198,12 @@ export default function SearchContainer(props){
                             link={genreLink}
                         />
                     </div>
+                </div>
+                <div className='game-search'>
+                    <input autoComplete='off' type="text" placeholder="Search By Name" value={search} className='game-search-input' onChange={()=>{
+                        localStorage.setItem("searchedValue",JSON.stringify(searchInput.value))
+                        setSearch(searchInput.value)
+                    }}></input>
                 </div>
                 <div className='search-button-container'>
 

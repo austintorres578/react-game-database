@@ -39,9 +39,7 @@ export default function HomePage(){
 
     //default fetch link that gathers 40 games sorted by metacritic rating from greatest to least
 
-    let fetchLink = "https://rawg-video-games-database.p.rapidapi.com/games?key=99cd09f6c33b42b5a24a9b447ee04a81&ordering=-metacritic&page_size=40&"
-
-
+    let fetchLink = "https://rawg-video-games-database.p.rapidapi.com/games?key=99cd09f6c33b42b5a24a9b447ee04a81&search=&ordering=-metacritic&page_size=40&"
     
     function search(link){
         const options = {
