@@ -56,7 +56,6 @@ export default function HomePage(){
             .then(response => {
                 return response.json()})
             .then(response => {
-                console.log(response)
                 setLoading(false)
 
     // Sets the link used with fetch to be able to recall the link when the home page is refreshed.
@@ -110,7 +109,7 @@ export default function HomePage(){
         localStorage.setItem("currentLink",JSON.stringify(origin+gatheredData[0].next.slice(24,length)))
         search(origin+gatheredData[0].next.slice(24,length))
         }else{
-            console.log("Not loaded")
+
         }
     }
 
@@ -127,7 +126,6 @@ export default function HomePage(){
             localStorage.setItem("currentPage",JSON.stringify(pageNumber-1))
         }
         }else{
-            console.log("Not loaded")
         }
     }
 
@@ -136,13 +134,10 @@ export default function HomePage(){
 
     function checkLocalLink(){
         if(JSON.parse(localStorage.getItem("currentLink"))!=null){
-            console.log(JSON.parse(localStorage.getItem("currentLink")).length)
-            console.log(JSON.parse(localStorage.getItem("currentLink")))
             setPageNumber(JSON.parse(localStorage.getItem("currentPage")))
             search(JSON.parse(localStorage.getItem("currentLink")))
         }
         else{
-            console.log("link is empty")
         }
     }
 

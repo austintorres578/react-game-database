@@ -145,7 +145,6 @@ export default function SearchContainer(props){
         
         freshSearch(fetchLink+genreLink+consoleLink+pageLink+searchLink)
 
-        console.log(fetchLink+genreLink+consoleLink+pageLink+searchLink)
 
 
         consoleLink=""

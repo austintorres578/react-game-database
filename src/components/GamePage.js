@@ -336,39 +336,29 @@ function htmlParser(html){
 function createGameLink(){
 
     if(addressBarLink.slice(addressBarLink.length-7,addressBarLink.length)[0]==="#"){
-        //  console.log("its 6 digits")
-        //  console.log(addressBarLink.slice(addressBarLink.length-5,addressBarLink.length))
          fetchLink= "https://rawg-video-games-database.p.rapidapi.com/games/"+addressBarLink.slice(addressBarLink.length-6,addressBarLink.length)
          searchForData(fetchLink+key)
-         console.log(fetchLink+"/screenshots")
          searchForImages(fetchLink+"/screenshots"+key)
 
     }else if(addressBarLink.slice(addressBarLink.length-6,addressBarLink.length)[0]==="#"){
-        //  console.log("its six digits")
-        //  console.log(addressBarLink.slice(addressBarLink.length-6,addressBarLink.length))
         fetchLink= "https://rawg-video-games-database.p.rapidapi.com/games/"+addressBarLink.slice(addressBarLink.length-5,addressBarLink.length)
         searchForData(fetchLink+key)
-        console.log(fetchLink+"/screenshots")
         searchForImages(fetchLink+"/screenshots"+key)
     }else if(addressBarLink.slice(addressBarLink.length-5,addressBarLink.length)[0]==="#"){
         fetchLink= "https://rawg-video-games-database.p.rapidapi.com/games/"+addressBarLink.slice(addressBarLink.length-4,addressBarLink.length)
         searchForData(fetchLink+key)
-        console.log(fetchLink+"/screenshots")
         searchForImages(fetchLink+"/screenshots"+key)
     }else if(addressBarLink.slice(addressBarLink.length-4,addressBarLink.length)[0]==="#"){
         fetchLink= "https://rawg-video-games-database.p.rapidapi.com/games/"+addressBarLink.slice(addressBarLink.length-3,addressBarLink.length)
         searchForData(fetchLink+key)
-        console.log(fetchLink+"/screenshots")
         searchForImages(fetchLink+"/screenshots"+key)
     }else if(addressBarLink.slice(addressBarLink.length-3,addressBarLink.length)[0]==="#"){
         fetchLink= "https://rawg-video-games-database.p.rapidapi.com/games/"+addressBarLink.slice(addressBarLink.length-2,addressBarLink.length)
         searchForData(fetchLink+key)
-        console.log(fetchLink+"/screenshots")
         searchForImages(fetchLink+"/screenshots"+key)
     }else if(addressBarLink.slice(addressBarLink.length-2,addressBarLink.length)[0]==="#"){
         fetchLink= "https://rawg-video-games-database.p.rapidapi.com/games/"+addressBarLink.slice(addressBarLink.length-1,addressBarLink.length)
         searchForData(fetchLink+key)
-        console.log(fetchLink+"/screenshots")
         searchForImages(fetchLink+"/screenshots"+key)
     }
 
@@ -417,7 +407,6 @@ function searchForImages(link){
             return response.json()})
         .then(response => {
             setLoading(false)
-            console.log(response.results)
             return setGamescreenshots(response.results)
         })
         .catch(err => console.error(err));
