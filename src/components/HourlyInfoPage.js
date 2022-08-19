@@ -24,6 +24,7 @@ export default function HourlyInfoPage(props){
                 currentZip={props.defaultZip}
                 changeZip={props.setDefaultZip}
                 searchZip={props.getData}
+                currentHour={dt.getHours()}
             />
             <Footer />
             <MobileFooter />
