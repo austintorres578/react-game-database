@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Footer from "./Footer";
-import InfoSection from "./InfoSection";
+import HourlyInfoSection from "./HourlyInfoSection";
 import MobileFooter from "./MobileFooter";
 import NavBar from "./NavBar";
 
-export default function HomePage(props){
+export default function HourlyInfoPage(props){
+    console.log(props)
 
-    
     let dt = new Date();
 
+
     return(
-        <div className="home-page">
+        <section>
             <NavBar
                 dataObject={props.recievedData}
                 currentZip={props.defaultZip}
@@ -18,12 +19,14 @@ export default function HomePage(props){
                 searchZip={props.getData}
                 currentHour={dt.getHours()}
             />
-            <InfoSection 
+            <HourlyInfoSection
                 dataObject={props.recievedData}
-                currentHour={dt.getHours()}
+                currentZip={props.defaultZip}
+                changeZip={props.setDefaultZip}
+                searchZip={props.getData}
             />
             <Footer />
             <MobileFooter />
-        </div>
+        </section>
     )
 }
