@@ -1,5 +1,3 @@
-https://api.rawg.io/docs/
-
 <h1>React Video Game database</h1>
 
 <a href="https://poetic-rabanadas-1d8116.netlify.app/">Live Website</a>
