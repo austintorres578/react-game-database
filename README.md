@@ -4,7 +4,7 @@
 
 <h2>Purpose</h2>
 <br>
-<p>This project is a video game database that I personally use from time to time to find games. It allows me to search for games by name, or do broad searches by catagories like console and genre. The games are also clickable, and open up a page that gives details on the clicked game. If no catagories are selected the website displays all games from all consoles and different genres and sorted by metacritic score. This project was created using the <a href="https://rapidapi.com/accujazz/api/rawg-video-games-database/">https://rapidapi.com/accujazz/api/rawg-video-games-database/</a></p>
+<p>This project is a video game database that I personally use from time to time to find games. It allows me to search for games by name, or do broad searches by catagories like console and genre. The games are also clickable, and open up a page that gives details on the clicked game. If no catagories are selected the website displays all games from all consoles and different genres and sorted by metacritic score. This project was created using the <a href="https://rapidapi.com/accujazz/api/rawg-video-games-database/">RAWG Videogame database</a></p>
 
 <h2>Functionality</h2>
 <ul>
