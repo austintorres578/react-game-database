@@ -3,6 +3,7 @@ import arrow from '../components/images/arrow.png'
 
 import SearchContainer from "./SearchContainer"
 import Games from './Games';
+import defaultBackground from "./images/background.png"
 
 export default function HomePage(){
 
@@ -37,9 +38,21 @@ export default function HomePage(){
 
     const [pageNumber, setPageNumber] = useState(1)
 
+    const [currentConsole, setCurrentConsole] = useState("")
+
+    const [currentGenre, setCurrentGenre] = useState("")
+
+    const [homePageBackground, setHomePageBackground] = useState({
+        backgroundImage: 'url(https://wallpapercave.com/wp/wp2552109.jpg)'
+    })
+
     //default fetch link that gathers 40 games sorted by metacritic rating from greatest to least
 
+    let date = new Date
+
     let fetchLink = "https://rawg-video-games-database.p.rapidapi.com/games?key=99cd09f6c33b42b5a24a9b447ee04a81&search_exact=true&&ordering=-metacritic&page_size=40&"
+
+    let topBackground
     
     function search(link){
         const options = {
@@ -56,12 +69,15 @@ export default function HomePage(){
             .then(response => {
                 return response.json()})
             .then(response => {
+                setHomePageBackground({
+                    backgroundImage: `url(${response.results[0].background_image})`
+                })
+                
                 setLoading(false)
 
     // Sets the link used with fetch to be able to recall the link when the home page is refreshed.
 
                 localStorage.setItem("currentLink",JSON.stringify(link))
-                console.log(response)
     // checks to see if the search is a fresh search so the local storage page can be remade
 
                 if(newSearch===true){
@@ -140,11 +156,25 @@ export default function HomePage(){
         else{
         }
     }
+    function setTopGame(){
+        
+
+        if(JSON.parse(localStorage.getItem("currentPage"))===1){
+        console.log(document.querySelector(".games-list").childNodes)
+
+        }
+        else{
+            console.log("not first page")
+        }
+    }
+
+   
 
     //useEffect calls checkLocalLink once on first load
 
     useEffect(() => {
         checkLocalLink();
+        setTopGame();
     }, [""]);
 
     //creates a game link for every game in fetchlinks result array
@@ -156,13 +186,25 @@ export default function HomePage(){
                  id={game.id}
                  name={game.name}
                  rating={game.metacritic}
+                 background={game.short_screenshots[1]}
+                 consoleList={game.platforms}
              />
          )
      })
     
+     console.log(gatheredData[0].results)
     
+
+
     return(
-        <div className="home-page-section">
+        <div className="home-page-section" style={
+            homePageBackground
+        }>
+            {/* <div className='home-page-header'>
+                <h1>The Best</h1>
+                <h1>{currentConsole} {currentGenre} Games Of {date.getFullYear()}</h1>
+            </div> */}
+
             <div className='app-container'>
                 <SearchContainer 
                     data={gatheredData}
@@ -171,6 +213,8 @@ export default function HomePage(){
                     loading={loading}
                     nextPageHandler={nextPage}
                     prevPageHandler={prevPage}
+                    changeConsole={setCurrentConsole}
+                    changeGenre={setCurrentGenre}
                     
                 />
                 <div className="results-container">

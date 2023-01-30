@@ -62,6 +62,7 @@ export default function SearchContainer(props){
     const [selectedConsole, setSelectedConsole] = useState(null);
     
     const [search,setSearch] = useState("");
+
     
     //connected to freshSearch()
 
@@ -210,17 +211,6 @@ export default function SearchContainer(props){
                     when fetch is already searching */}
 
                     {loadChecker ? <></> : <button onClick={getLinks}>Search</button>}
-                </div>
-            </div>
-            <div className='game-catagories'>
-                <div>
-                    <p>ID</p>
-                </div>
-                <div>
-                    <p>Name</p>
-                </div>
-                <div className='catagories-rating'>
-                    <p>Rating</p>
                 </div>
             </div>
         </div>
