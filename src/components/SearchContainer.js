@@ -102,6 +102,8 @@ export default function SearchContainer(props){
 
     let consoleDefault = () =>{
         if(JSON.parse(localStorage.getItem("selectedConsole"))!=null){
+            console.log(JSON.parse(localStorage.getItem("selectedConsole")).placement)
+            console.log(consoles[JSON.parse(localStorage.getItem("selectedConsole")).placement])
             return consoles[JSON.parse(localStorage.getItem("selectedConsole")).placement]
         }else{
             return consoles[0]
@@ -112,6 +114,8 @@ export default function SearchContainer(props){
 
     let genresDefault = () =>{
         if(JSON.parse(localStorage.getItem("selectedGenre"))!=null){
+            console.log(JSON.parse(localStorage.getItem("selectedGenre")).placement)
+            console.log(genres[JSON.parse(localStorage.getItem("selectedGenre")).placement])
             return genres[JSON.parse(localStorage.getItem("selectedGenre")).placement]
         }else{
             return genres[0]
@@ -191,25 +195,23 @@ export default function SearchContainer(props){
                     </div>
                     <div className='genre-input'>
                         <Select
-                            placeholder={"All Genres"}
-                            defaultValue={genresDefault}
                             onChange={setSelectedGenre}
+                            defaultValue={genresDefault}
+                            placeholder={"All Genres"}
                             options={genres}
                             link={genreLink}
                         />
                     </div>
                 </div>
-                <div className='game-search'>
-                    <input autoComplete='off' type="text" placeholder="Search By Name" value={search} className='game-search-input' onChange={()=>{
-                        localStorage.setItem("searchedValue",JSON.stringify(searchInput.value))
-                        setSearch(searchInput.value)
-                    }}></input>
-                </div>
+                
                 <div className='search-button-container'>
 
                     {/* if fetching loading then search button wont be displayed, this is to prevent searches
                     when fetch is already searching */}
-
+                    <input autoComplete='off' type="text" placeholder="Search By Name" value={search} className='game-search-input' onChange={()=>{
+                        localStorage.setItem("searchedValue",JSON.stringify(searchInput.value))
+                        setSearch(searchInput.value)
+                    }}></input>
                     {loadChecker ? <></> : <button onClick={getLinks}>Search</button>}
                 </div>
             </div>

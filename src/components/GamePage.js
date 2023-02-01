@@ -1,5 +1,6 @@
 import React from "react";
 import parse from "html-react-parser";
+import loadingCircle from "./images/loading.gif"
 
 import { useState, useEffect } from 'react';
 
@@ -433,8 +434,7 @@ function searchForImages(link){
         "backgroundPosition": "center center",
         "backgroundRepeat":"no-repeat",
         "backgroundSize":"cover",
-        "color":"white"
-        
+        "color":"white"  
     }
 
     //checks to see if screenshots are present and if not will display no images h3
@@ -448,7 +448,7 @@ function searchForImages(link){
 
     return(
         <div style={gamePageSectionStyle}>
-            {loading ? <div className="game-page-loading"><h2>Loading...</h2></div> : <div className="game-page">
+            {loading ? <div className='loading-gif'><img src={loadingCircle}></img></div> : <div className="game-page">
                 <div className="game-title header">
                     <h1>{gameData.name_original}</h1>
                 </div>
@@ -461,7 +461,7 @@ function searchForImages(link){
                 <div className="platforms-container">
                     <h3>Platforms</h3>
                     <div className="platform-labels">
-                    {loading ? <p>Loading...</p> : gameData.platforms.map(platformArray => 
+                    {loading ? <div className='loading-gif'><img src={loadingCircle}></img></div> : gameData.platforms.map(platformArray => 
                             <div>
                                 <p>{platformArray.platform.name}</p>
                             </div>)}
@@ -470,7 +470,7 @@ function searchForImages(link){
                 <div className="game-page-genres-container">
                     <h3>Genres</h3>
                     <div className="genre-labels">   
-                        {loading ? <p>Loading...</p> : gameData.genres.map(genresArray => 
+                        {loading ? <div className='loading-gif'><img src={loadingCircle}></img></div> : gameData.genres.map(genresArray => 
                             <div>
                                 <p>{genresArray.name}</p>
                             </div>)}

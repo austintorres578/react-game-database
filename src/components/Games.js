@@ -1,4 +1,4 @@
-import React from "react";
+import {React,useEffect} from "react";
 import { Link } from 'react-router-dom';
 
 import metacriticIcon from "./images/metacriticIcon.png"
@@ -6,6 +6,14 @@ import metacriticIcon from "./images/metacriticIcon.png"
 export default function Games(props){
 
     const gameBackgroundObj = props.background
+
+    function gameRanking(){
+        if((props.pageNumber===1)&&(document.querySelector(".games-list").children.length>=3)){
+            document.querySelector(".games-list").children[0].children[0].style.border="solid 3px gold"
+            document.querySelector(".games-list").children[1].children[0].style.border="solid 3px silver"
+            document.querySelector(".games-list").children[2].children[0].style.border="solid 3px #cd8032"
+        }
+    }
 
     let backgroundImg
 
@@ -36,7 +44,9 @@ export default function Games(props){
          )
     })
 
-
+    useEffect(() => {
+        gameRanking()
+    }, [""]);
 
     
     

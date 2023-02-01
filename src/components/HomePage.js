@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import arrow from '../components/images/arrow.png'
+import loadingCircle from './images/loading.gif'
+import whiteArrow from './images/white-arrow-up.png'
 
 import SearchContainer from "./SearchContainer"
 import Games from './Games';
@@ -52,7 +54,6 @@ export default function HomePage(){
 
     let fetchLink = "https://rawg-video-games-database.p.rapidapi.com/games?key=99cd09f6c33b42b5a24a9b447ee04a81&search_exact=true&&ordering=-metacritic&page_size=40&"
 
-    let topBackground
     
     function search(link){
         const options = {
@@ -69,9 +70,6 @@ export default function HomePage(){
             .then(response => {
                 return response.json()})
             .then(response => {
-                setHomePageBackground({
-                    backgroundImage: `url(${response.results[0].background_image})`
-                })
                 
                 setLoading(false)
 
@@ -84,6 +82,18 @@ export default function HomePage(){
                     setPageNumber(1)
                     localStorage.setItem("currentPage",JSON.stringify(1))
                 }
+                if(localStorage.getItem("currentPage")==="1"){
+                    localStorage.setItem("topGameBackground",JSON.stringify(response.results[0].background_image))
+                    setHomePageBackground({
+                        backgroundImage: `url(${response.results[0].background_image})`
+                    })
+                }else{
+                    setHomePageBackground({
+                        backgroundImage: `url(${localStorage.getItem("topGameBackground")})`
+                    })
+                }
+                setCurrentConsole(document.querySelectorAll(".css-qc6sy-singleValue")[0].innerHTML)
+                setCurrentGenre(document.querySelectorAll(".css-qc6sy-singleValue")[1].innerHTML)
                 return(setGatheredData([
                     {
                     results:response.results,
@@ -148,34 +158,20 @@ export default function HomePage(){
     //Checks to see if a link is saved in local storage and if it is the link will be used in search
     //function. then it will set page state as local storage page
 
+
     function checkLocalLink(){
         if(JSON.parse(localStorage.getItem("currentLink"))!=null){
             setPageNumber(JSON.parse(localStorage.getItem("currentPage")))
             search(JSON.parse(localStorage.getItem("currentLink")))
         }
-        else{
-        }
     }
-    function setTopGame(){
-        
-
-        if(JSON.parse(localStorage.getItem("currentPage"))===1){
-        console.log(document.querySelector(".games-list").childNodes)
-
-        }
-        else{
-            console.log("not first page")
-        }
-    }
-
+    
+   
+   
    
 
     //useEffect calls checkLocalLink once on first load
 
-    useEffect(() => {
-        checkLocalLink();
-        setTopGame();
-    }, [""]);
 
     //creates a game link for every game in fetchlinks result array
 
@@ -188,25 +184,23 @@ export default function HomePage(){
                  rating={game.metacritic}
                  background={game.short_screenshots[1]}
                  consoleList={game.platforms}
+                 pageNumber={pageNumber}
              />
          )
      })
-    
-     console.log(gatheredData[0].results)
-    
 
+     console.log(gatheredData[0].loaded)
+
+     useEffect(() => {
+        checkLocalLink();
+    }, [""]);
+    
 
     return(
         <div className="home-page-section" style={
             homePageBackground
         }>
-            {/* <div className='home-page-header'>
-                <h1>The Best</h1>
-                <h1>{currentConsole} {currentGenre} Games Of {date.getFullYear()}</h1>
-            </div> */}
-
-            <div className='app-container'>
-                <SearchContainer 
+            <SearchContainer 
                     data={gatheredData}
                     handleSearch={freshSearch}
                     link={fetchLink}
@@ -217,16 +211,31 @@ export default function HomePage(){
                     changeGenre={setCurrentGenre}
                     
                 />
+                {/*<h1>The Best {currentGenre}</h1>
+                <h1>Games Of The {currentConsole}</h1>*/} 
+
+            <div className='app-container'>
                 <div className="results-container">
                     <div className='games-list'>
 
                         {/* checks if search is loading and if it is, the loading screen will show but if it
                         isnt the games will show */}
-
-                        {loading ? <p className='loading-text'>Loading...</p> : games}
+                        {loading ? <div className='loading-gif'><img src={loadingCircle}></img></div> : games}
+                        {gatheredData[0].loaded ? <></> : 
+                    <div className='home-page-header'>
+                        <div className='search-page-header'>
+                            <img src={whiteArrow}></img>
+                            <h1>START SEARCH ABOVE</h1> 
+                        </div>
+                        <div className='page-number-header'>
+                            <img src={whiteArrow}></img>
+                            <h1>Change Page Below</h1> 
+                        </div>
+                    </div>}
                     </div>
                 </div>
-                <div className='game-page-buttons'>
+            </div>
+            <div className='game-page-buttons'>
                     <div>
 
                         {/* checks if search is loading and if it is, the loading screen will show but if it
@@ -244,7 +253,6 @@ export default function HomePage(){
 
                         {loading ? <></> : <button onClick={nextPage}><img className="right-arrow" src={arrow}></img></button>}
                     </div>
-                </div>
             </div>
         </div>
     )
