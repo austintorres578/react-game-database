@@ -17,14 +17,18 @@ export default function Games(props){
 
     let backgroundImg
 
-        if(gameBackgroundObj!=undefined){
-        backgroundImg = `
+        if(gameBackgroundObj===null){
+            backgroundImg="url(https://techmedicvt.com/images/about-us/tech%20background%20copy-10.jpg)"
+        }
+        else if(gameBackgroundObj.length===0){
+            backgroundImg="url(https://techmedicvt.com/images/about-us/tech%20background%20copy-10.jpg)"
+        }
+        else{
+            backgroundImg = `
         linear-gradient(to right,
             rgba(0, 0, 0, .5), 
             rgba(0, 0, 0, 0.0)),
-        url(${gameBackgroundObj.image})`
-        }else{
-        backgroundImg="url(https://techmedicvt.com/images/about-us/tech%20background%20copy-10.jpg)"
+        url(${gameBackgroundObj[gameBackgroundObj.length-1].image})`
         }
 
     let style={
@@ -43,6 +47,10 @@ export default function Games(props){
              </div>
          )
     })
+
+    function createGame(){
+        
+    }
 
     useEffect(() => {
         gameRanking()

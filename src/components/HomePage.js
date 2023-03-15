@@ -70,8 +70,8 @@ export default function HomePage(){
             .then(response => {
                 return response.json()})
             .then(response => {
-                
                 setLoading(false)
+                console.log(response.results)
 
     // Sets the link used with fetch to be able to recall the link when the home page is refreshed.
 
@@ -176,13 +176,17 @@ export default function HomePage(){
     //creates a game link for every game in fetchlinks result array
 
      const games = gatheredData[0].results.map(game => {
+        
+
+    
+
          return (
              <Games
                  key={game.id}
                  id={game.id}
                  name={game.name}
                  rating={game.metacritic}
-                 background={game.short_screenshots[1]}
+                 background={game.short_screenshots}
                  consoleList={game.platforms}
                  pageNumber={pageNumber}
              />
