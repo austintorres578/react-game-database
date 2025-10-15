@@ -1,6 +1,6 @@
 <h1>Video Game Database (RAWG API)</h1>
 
-<img src="public/logo192.png" />
+<img src="public/favicon"  height="200" width="200" />
 
 A video game discovery platform built in <strong>React</strong> using the <strong>RAWG Video Game Database API</strong>. This app allows users to search, filter, and explore games across multiple consoles and genres, displaying detailed game pages with dynamic visuals and ranking them by Metacritic score.  
 All searches and preferences are saved using <strong>Local Storage</strong> for a seamless return experience.
