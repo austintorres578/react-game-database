@@ -27,7 +27,9 @@ All searches and preferences are saved using <strong>Local Storage</strong> for 
 
 <img src="public/vgdbBanner.png" />
 <br />
-Clicking a game reveals an in-depth detail page, complete with genres, platforms, ratings, description, and a background styled to match the game's theme.
+<img src="public/pagnitation.png">
+<br />
+Sorts games by metacritic score to get the best games first, with game 1-3 being bordered in a gold, silver, or bronze border. You can go deeper down the list using the pagnitation at the bottom of the page.
 <br /><br />
 
 <h2>Tech Used</h2>
