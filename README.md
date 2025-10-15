@@ -49,10 +49,10 @@ Each game in the sorted list has its own individual page. Each game page has its
 
 <h2>About Me</h2>
 Thank you for checking out my work — I hope you enjoyed exploring this project!
-I’m currently seeking new opportunities in Web Development and would love to connect.
-<br />
+I’m currently seeking new opportunities in Web Development and would love to connect.<br />
 
 My Links:<br />
+
 <a href="mailto:austintorres578@gmail.com">austintorres578@gmail.com</a><br />
 <a href="https://austintorres578.github.io/Web-dev-portfolio/">Portfolio Site</a><br />
 <a href="https://github.com/austintorres578">GitHub</a><br />
