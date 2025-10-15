@@ -22,9 +22,9 @@ All searches and preferences are saved using <strong>Local Storage</strong> for 
 <a href="https://poetic-rabanadas-1d8116.netlify.app/">Visit the Site</a>
 
 <img src="public/search-bar.png" />
-<br /><br />
+<br /
 Search by name, genre, or console using the search bar fixed to the top of every page.
-<br /><br />
+<br />
 
 <img src="public/vgdb-details.png" />
 <br /><br />
