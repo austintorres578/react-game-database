@@ -29,7 +29,9 @@ All searches and preferences are saved using <strong>Local Storage</strong> for 
 <br />
 <img src="public/pagnitation.png">
 <br />
+
 Sorts games by metacritic score to get the best games first, with game 1-3 being bordered in a gold, silver, or bronze border. You can go deeper down the list using the pagnitation at the bottom of the page.
+
 <br />
 <img src="public/single-game-page.png">
 <br />
