@@ -15,9 +15,9 @@ All searches and preferences are saved using <strong>Local Storage</strong> for 
   <li>Clickable game pages with detailed stats, genres, platforms, and release info</li>
 </ul>
 
-<h2>Live Website – <a href="https://your-live-link-here.com/">Video Game Database</a></h2>
+<h2>Live Website – <a href="[https://your-live-link-here.com/](https://poetic-rabanadas-1d8116.netlify.app/)">Video Game Database</a></h2>
 
-<a href="https://your-live-link-here.com/">Visit the App</a>
+<a href="https://poetic-rabanadas-1d8116.netlify.app/">Visit the Site</a>
 
 <img src="public/vgdb-search.png" />
 <br /><br />
