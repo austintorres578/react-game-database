@@ -52,7 +52,7 @@ Thank you for checking out my work — I hope you enjoyed exploring this project
 I’m currently seeking new opportunities in Web Development and would love to connect.
 <br />
 My Links:
-<a href="mailto:austintorres578@gmail.com">austintorres578@gmail.com</a>
-<a href="https://austintorres578.github.io/Web-dev-portfolio/">Portfolio Site</a>
-<a href="https://github.com/austintorres578">GitHub</a>
-<a href="https://www.linkedin.com/in/austin-torres-55696420a/">LinkedIn</a>
+<a href="mailto:austintorres578@gmail.com">austintorres578@gmail.com</a><br />
+<a href="https://austintorres578.github.io/Web-dev-portfolio/">Portfolio Site</a><br />
+<a href="https://github.com/austintorres578">GitHub</a><br />
+<a href="https://www.linkedin.com/in/austin-torres-55696420a/">LinkedIn</a><br />
