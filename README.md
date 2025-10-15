@@ -13,9 +13,11 @@ All searches and preferences are saved using <strong>Local Storage</strong> for 
   <li>Dynamic page backgrounds based on selected game</li>
   <li>Local Storage used to save last search on reload</li>
   <li>Clickable game pages with detailed stats, genres, platforms, and release info</li>
+  <li>Ranks Top 3 games by using Gold, Silver, Bronze borders on searches first page</li>
+  <li>Built in pagnitation</li>
 </ul>
 
-<h2>Live Website – <a href="[https://your-live-link-here.com/](https://poetic-rabanadas-1d8116.netlify.app/)">Video Game Database</a></h2>
+<h2>Deployed On Netlify – <a href="[https://your-live-link-here.com/](https://poetic-rabanadas-1d8116.netlify.app/)">Video Game Database</a></h2>
 
 <a href="https://poetic-rabanadas-1d8116.netlify.app/">Visit the Site</a>
 
