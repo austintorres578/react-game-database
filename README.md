@@ -47,5 +47,12 @@ Each game in the sorted list has its own individual page. Each game page has its
   <li>Local Storage</li>
 </ul>
 
-<h2>About This Project</h2>
-<p>This project was built to create a personal game explorer I could use to find top-rated games across platforms with real-time details. It combines performance, React functionality, and API integration for a practical gaming tool.</p>
+<h2>About Me</h2>
+Thank you for checking out my work — I hope you enjoyed exploring this project!
+I’m currently seeking new opportunities in Web Development and would love to connect.
+<br />
+My Links:
+<a href="mailto:austintorres578@gmail.com">austintorres578@gmail.com</a>
+<a href="https://austintorres578.github.io/Web-dev-portfolio/">Portfolio Site</a>
+<a href="https://github.com/austintorres578">GitHub</a>
+<a href="https://www.linkedin.com/in/austin-torres-55696420a/">LinkedIn</a>
