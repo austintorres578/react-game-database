@@ -30,7 +30,10 @@ All searches and preferences are saved using <strong>Local Storage</strong> for 
 <img src="public/pagnitation.png">
 <br />
 Sorts games by metacritic score to get the best games first, with game 1-3 being bordered in a gold, silver, or bronze border. You can go deeper down the list using the pagnitation at the bottom of the page.
-<br /><br />
+<br />
+<img src="public/single-game-page.png">
+<br />
+Each game in the sorted list has its own individual page. Each game page has its own unqique details like game description, platforms, game genre, release date, and developer/publisher. The game page also has its own dynamic gmae background to represent the selected game
 
 <h2>Tech Used</h2>
 <ul>
