@@ -25,8 +25,8 @@ All searches and preferences are saved using <strong>Local Storage</strong> for 
 <p>Search by name, genre, or console using the search bar fixed to the top of every page.</p>
 <br />
 
-<img src="public/vgdb-details.png" />
-<br /><br />
+<img src="public/vgdbBanner.png" />
+<br />
 Clicking a game reveals an in-depth detail page, complete with genres, platforms, ratings, description, and a background styled to match the game's theme.
 <br /><br />
 
